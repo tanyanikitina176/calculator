@@ -1,0 +1,55 @@
+.container {
+	position: relative;
+	display: grid;
+	grid-template-rows: repeat(8, 1fr);
+	grid-template-columns: repeat(4, 1fr);
+	justify-items: center;
+	gap: 5px;
+	width: 100%;
+	max-width: 275px;
+	margin: 0 auto;
+	padding: 10px;
+	padding-bottom: 30px;
+	overflow: hidden;
+	background: var(--background);
+	border-radius: 12px;
+
+}
+
+.listIcon {
+	grid-row: 1/2;
+	grid-column: 1/-1;
+	justify-self: flex-start;
+	color: var(--special-color);
+	background: none;
+}
+
+.listIcon:hover {
+	color: var(--special-color-hover);
+}
+
+div .button_history  {
+	display: flex;
+	align-self: flex-end;
+	width: fit-content;
+	color: var(--special-color);
+	font-weight: 600;
+	font-size: small;
+	background: none;
+	aspect-ratio: auto;
+}
+
+div .button_history_clean {
+	color: rgb(165 42 42);
+}
+
+div .button_history_clean:hover {
+	color: rgb(90 24 24);
+}
+
+div .button_history:hover {
+	color: var(--special-color-hover);
+	background: none;
+}
+
+

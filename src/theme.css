@@ -1,0 +1,39 @@
+:root {
+    /* light theme tokens */
+  --background-light: rgb(255 255 255);
+  --background-primary-light: rgb(117 109 109);
+  --special-color-light: rgb(49 109 174);
+  --special-color-hover-light: rgb(60 137 225);
+  --button-color-light: rgb(181 181 181);
+  --button-color-hover-light: rgb(210 208 208);
+  --button-text-color-light: rgb(13 13 13);
+
+  /* dark theme tokens */
+  --background-dark: rgb(0 0 0);
+  --background-primary-dark: rgb(51 51 51);
+  --special-color-dark: rgb(255 165 0);
+  --special-color-hover-dark: rgb(255 202 134);
+  --button-color-dark: rgb(128 128 128);
+  --button-color-hover-dark: rgb(169 169 169);
+  --button-text-color-dark: rgb(255 255 255);
+}
+
+[data-theme='light'] {
+  --background: var(--background-light);
+  --background-primary: var(--background-primary-light);
+  --special-color: var(--special-color-light);
+  --special-color-hover: var(--special-color-hover-light);
+  --button-color: var(--button-color-light);
+  --button-color-hover: var(--button-color-hover-light);
+  --button-text-color: var(--button-text-color-light);
+}
+
+[data-theme='dark'] {
+  --background: var(--background-dark);
+  --background-primary: var(--background-primary-dark);
+  --special-color: var(--special-color-dark);
+  --special-color-hover: var(--special-color-hover-dark);
+  --button-color: var(--button-color-dark);
+  --button-color-hover: var(--button-color-hover-dark);
+  --button-text-color: var(--button-text-color-dark);
+}
