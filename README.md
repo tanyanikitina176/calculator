@@ -1,69 +1,44 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## О проекте
 
-Currently, two official plugins are available:
+Калькулятор, разработанный с использованием React и TypeScript.
+Цель проекта — закрепить знания по современному стеку React, TypeScript и библиотеке Material UI, а также реализовать интерактивный интерфейс.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Функционал
 
-## Expanding the ESLint configuration
+Базовые арифметические операции: сложение, вычитание, умножение, деление.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Технологии:
+- React (Hooks, компонентный подход)
+- TypeScript
+- Vite (сборка проекта)
+- Material UI
+- HTML5, CSS3
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+⚙️ Скрипты
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+| Команда           | Назначение                         |
+| ----------------- | ---------------------------------- |
+| `npm run dev`     | Запуск проекта в dev-режиме        |
+| `npm run build`   | Сборка проекта                     |
+| `npm run preview` | Предпросмотр production-сборки     |
+| `npm run lint`    | Проверка ESLint                    |
+| `npm run format`  | Форматирование кода через Prettier |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Установка и запуск
+### 1.Клонируйте репозиторий:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+git clone https://github.com/tanyanikitina176/Calculator.git
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 2. Перейдите в папку проекта:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+cd Calculator
+
+### 3.Установите зависимости:
+
+npm install
+
+### 4.Запустите проект:
+
+npm run dev
