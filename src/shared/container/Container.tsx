@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import styles from './container.module.css';
 import { CalculatorScreen } from '../ui/calculator_screen/calculator-screen';
 import { Button } from '../ui/button/button';
@@ -15,7 +15,21 @@ import {
 } from '../ui/list_calculated_values/listCalculatedValues';
 import Slide from '@mui/material/Slide';
 import Paper from '@mui/material/Paper';
-import { setHistoryInLocalStorage } from '../utils/getDataFromLocalStorage';
+import {
+	getHistoryFromLocalStorage,
+	setHistoryInLocalStorage,
+} from '../utils/getDataFromLocalStorage';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import {
+	Box,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
+	Modal,
+	Typography,
+} from '@mui/material';
 
 const modificatedExpression = (value: string): string => {
 	let expression = value
@@ -61,6 +75,7 @@ export const Container = () => {
 	const [value, setValue] = useState<string>('0');
 	const [isOpenListCalculatedValues, setIsOpenListCalculatedValues] =
 		useState<boolean>(false);
+	const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false);
 	const [expression, setExpression] = useState<string>('');
 	const [history, setHistory] = useState<HistoryCalculated[]>([]);
 	const [isClearedAfterEquals, setIsClearedAfterEquals] = useState(false);
@@ -68,9 +83,25 @@ export const Container = () => {
 		'AC'
 	);
 	const containerRef = useRef<HTMLDivElement | null>(null);
+	const paperRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		const historyCalculated = getHistoryFromLocalStorage();
+		setHistory(historyCalculated!);
+	}, []);
 
 	const handleClickValuesList = () => {
 		setIsOpenListCalculatedValues(!isOpenListCalculatedValues);
+	};
+
+	const handleHistorySelect = (history: HistoryCalculated) => {
+		setValue(history.value);
+		setExpression(history.expression);
+		handleClickValuesList();
+	};
+
+	const handleClickDelete = () => {
+		setIsOpenModalDelete(true);
 	};
 
 	const clearValue = () => {
@@ -95,7 +126,10 @@ export const Container = () => {
 				{ value: calculatedValue.toString(), expression: value },
 				...prev,
 			]);
-			setHistoryInLocalStorage({value: calculatedValue.toString(), expression: value})
+			setHistoryInLocalStorage({
+				value: calculatedValue.toString(),
+				expression: value,
+			});
 			setButtonTextDelete('AC');
 			setIsClearedAfterEquals(true);
 			return;
@@ -192,26 +226,65 @@ export const Container = () => {
 					>
 						Готово
 					</Button>
-					<ListCalculatedValues history={history} />
-					<Paper
-						sx={{
-							backgroundColor: 'var(--background-primary)',
-							display: 'flex',
-							justifyContent: 'space-between',
-							width: '100%',
-							maxWidth: '275px',
-							padding: '20px 3px',
-							borderRadius: 'initial',
-						}}
-					>
-						<Button extraClass={styles.button_history}>Править</Button>
-						<Button
-							extraClass={`${styles.button_history} 
+					{history.length === 0 ? (
+						<div className={styles.container_empty}>
+							<AccessTimeIcon className={styles.time_icon} />
+							<p>Нет истории</p>
+						</div>
+					) : (
+						<>
+							<ListCalculatedValues
+								history={history}
+								onSelectHistory={handleHistorySelect}
+							/>
+							<Paper
+								sx={{
+									backgroundColor: 'var(--background-primary)',
+									display: 'flex',
+									justifyContent: 'space-between',
+									width: '100%',
+									maxWidth: '275px',
+									padding: '20px 3px',
+									borderRadius: 'initial',
+									position: 'relative',
+								}}
+								ref={paperRef}
+							>
+								<Button extraClass={styles.button_history}>Править</Button>
+								<Button
+									extraClass={`${styles.button_history} 
 														${styles.button_history_clean}`}
-						>
-							Очистить
-						</Button>
-					</Paper>
+									onClick={handleClickDelete}
+								>
+									Очистить
+								</Button>
+								<Dialog
+									open={isOpenModalDelete}
+									onClose={() => {}}
+									aria-labelledby='alert-dialog-title'
+									aria-describedby='alert-dialog-description'
+									container={paperRef.current}
+									disablePortal
+									sx={{
+										m: '0'
+									}}
+								>
+									<DialogContent>
+										<DialogContentText id='alert-dialog-description'>
+											Все вычисления будут удалены. Это действие нельзя
+											отменить.
+										</DialogContentText>
+									</DialogContent>
+									<DialogActions>
+										<Button onClick={() => {}}>Disagree</Button>
+										<Button onClick={() => {}}>
+											Agree
+										</Button>
+									</DialogActions>
+								</Dialog>
+							</Paper>
+						</>
+					)}
 				</Paper>
 			</Slide>
 

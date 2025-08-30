@@ -9,14 +9,22 @@ export type HistoryCalculated = {
 	value: string;
 };
 
+interface ListCalculatedValuesProps {
+	onSelectHistory: (history: HistoryCalculated) => void;
+	history: HistoryCalculated[];
+}
 
-export const ListCalculatedValues = () => {
+export const ListCalculatedValues = ({onSelectHistory}: ListCalculatedValuesProps ) => {
 	const [historyToShow, setHistoryToShow] = useState<HistoryCalculated[]>([]);
 
 	useEffect(() => {
 		const historyCalculated = getHistoryFromLocalStorage()
 		setHistoryToShow(historyCalculated!);
 	}, []);
+
+	const handleItemClick = (history: HistoryCalculated) => {
+		onSelectHistory(history);
+	}
 
 	return (
 		<List sx={{
@@ -28,7 +36,7 @@ export const ListCalculatedValues = () => {
 			</ListItemButton>
 
 			{historyToShow.map((history, index) => (
-				<ListItemButton key={index}>
+				<ListItemButton key={index} onClick={() => handleItemClick(history)}>
 					<ListItemText
 						slotProps={{
 							secondary: { sx: { fontSize: '1rem', color: 'black' } },

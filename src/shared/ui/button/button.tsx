@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import styles from './button.module.css';
 
 interface ButtonProps {
-	onClick: React.MouseEventHandler<HTMLButtonElement>;
+	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 	extraClass?: string;
 	children: ReactNode;
 	isSpecial?: boolean;
