@@ -4,7 +4,10 @@
 
 Калькулятор, разработанный с использованием React и TypeScript.
 Цель проекта — закрепить знания по современному стеку React, TypeScript и библиотеке Material UI, а также реализовать интерактивный интерфейс.
-
+<div style="text-align: center;">
+<img src="public/dark.png" alt="Темная тема" width="180" height="350" />&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="public/light.png" alt="Светлая тема" width="180" height="350" />
+</div>
 ## Функционал
 
 Базовые арифметические операции: сложение, вычитание, умножение, деление.
