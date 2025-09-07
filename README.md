@@ -42,4 +42,3 @@ npm install
 ### 4.Запустите проект:
 
 npm run dev
->>>>>>> development
