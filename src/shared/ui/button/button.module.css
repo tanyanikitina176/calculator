@@ -1,0 +1,21 @@
+.button {
+	width: 60px;
+	color: var(--button-text-color);
+	font-size: 25px;
+	background-color: var(--button-color);
+	border-radius: 50%;
+	cursor: pointer;
+	aspect-ratio: 1/1;
+}
+
+.button:hover {
+	background-color: var(--button-color-hover);
+}
+
+.button_special {
+	background-color: var(--special-color);
+}
+
+.button_special:hover {
+	background-color: var(--special-color-hover);
+}

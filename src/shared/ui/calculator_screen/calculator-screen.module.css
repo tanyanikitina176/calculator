@@ -1,0 +1,21 @@
+.calculator_screen {
+	display: flex;
+	grid-row: 2/4;
+	grid-column: 1/-1;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-end;
+	width: 100%;
+	color: var(--button-text-color);
+	font-size: 35px;
+	font-family: inherit;
+}
+
+.calculator_screen_expression {
+	color: var(--button-color-hover);
+	font-size: 25px;
+}
+
+.calculator_screen_value {
+	max-width: 100%;
+}
